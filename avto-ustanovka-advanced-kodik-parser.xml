@@ -11,6 +11,9 @@
 	<needplugin>Advanced Kodik Parser</needplugin>
 	<mnotice>1</mnotice>
 	<mysqlinstall><![CDATA[TRUNCATE TABLE `{prefix}_post`;
+TRUNCATE TABLE `{prefix}_post_extras`;
+TRUNCATE TABLE `{prefix}_post_extras_cats`;
+TRUNCATE TABLE `{prefix}_anime_list`;
 TRUNCATE TABLE `{prefix}_category`;
 INSERT INTO `{prefix}_category` VALUES ('1','0','1','Аниме','anime','','','Смотрите лучшие аниме без рекламы онлайн. Все жанры и новинки в одном месте. Наслаждайтесь аниме в HD без ожиданий и ограничений.','аниме, смотреть аниме, аниме без рекламы, аниме онлайн, новинки аниме 2024, аниме в HD','','','0','','','Аниме - Смотреть новинки и классику без рекламы в HD качестве','0','1','','0','0','0','0','1','1','1','-1','1');
 INSERT INTO `{prefix}_category` VALUES ('2','0','2','ТВ-сериал','tv-series','','','Смотрите популярные и новые ТВ-сериалы аниме без рекламы. Все серии доступны в HD качестве на нашем сайте.','аниме сериалы, ТВ-аниме, смотреть сериалы аниме, аниме без рекламы, аниме в HD','','','0','','','ТВ-сериалы аниме - Все эпизоды без рекламы и в хорошем качестве','0','1','','0','0','0','0','1','1','1','-1','1');
@@ -222,6 +225,7 @@ kinopoisk_id|ID КиноПоиск взятое с Kodik||text||1|0|0|0|||0|0|||
 world_art_id|world_art id||text||1|0|0|0|||0|0||||||||||||||||0||
 imdb_id|ID IMDB||text||1|0|0|0|||0|0||||||||||||||||0|||||
 tmdb_id|ID TMDB||text||1|0|0|0|||0|0||||||||||||||||0|||||
+mdl_id|Mydramalist ID||text||1|0|0|0|||0|0||||||||||||||||0||||||0|||
 shikimori_name|Оригинальное название аниме||text||1|0|0|0|||0|0||||||||||||||||0||
 shikimori_russian|Название аниме на русском||text||1|0|0|0|||0|0||||||||||||||||0||
 shikimori_english|Название аниме на английском||text||1|0|0|0|||0|0||||||||||||||||0||
@@ -284,8 +288,7 @@ kadr_5|kadr_5||text||1|0|0|0|||0|0||||||||||||||||0||
 imdb_rating|Рейтинг IMDB||text||1|0|0|0|||0|0||||||||||||||||0||||||0|||
 imdb_votes|IMDB голоса||text||1|0|0|0|||0|0||||||||||||||||0||||||0|||
 mdl_rating|Mydramalist Рейтинг||text||1|0|0|0|||0|0||||||||||||||||0||||||0|||
-mdl_votes|Mydramalist Голоса||text||1|0|0|0|||0|0||||||||||||||||0||||||0|||
-mdl_id|Mydramalist ID||text||1|0|0|0|||0|0||||||||||||||||0||||||0|||";
+mdl_votes|Mydramalist Голоса||text||1|0|0|0|||0|0||||||||||||||||0||||||0|||";
 
 $xfieldspath = ENGINE_DIR . '/data/xfields.txt';
 file_put_contents($xfieldspath, $needxfvalue);
@@ -322,7 +325,7 @@ $needaapcfg = "<?PHP
     'max_designers' => 5,
     'max_operators' => 5,
     'update_on' => 1,
-    'cron_key' => 'c0161bb47be4cc088fed01d26250f676',
+    'cron_key' => 'mrd3ath',
     'rooms_enable' => 1,
     'active_time' => 50,
   ),
@@ -750,7 +753,7 @@ file_put_contents($aapcfgpath, $needaapcfg);]]></phpinstall>
 	<notice><![CDATA[<h2 style="margin:0;padding:0;line-height:1;"><b>После установки необходимо проверить следующее</b></h2>
 [ol=1]
 [*]Страница категории, проверьте что категории начинаются с ID 1, а так же должно начинаться с <b>Аниме</b> и заканчиваться <b>2024</b> 
-[*]Страница дополнительный полей, должно начинаться с <b>poster</b> и заканчиваться <b>mdl_id</b> 
+[*]Страница дополнительный полей, должно начинаться с <b>poster</b> и заканчиваться <b>mdl_votes</b> 
 [*]Страница модуля Advanced Anime Parser, замените API ключ на свой.
 [/ol]
 <h2 style="margin:0;padding:0;line-height:1;"><b>То что теперь необходимо сделать</b></h2>
