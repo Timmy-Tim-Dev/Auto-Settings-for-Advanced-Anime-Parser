@@ -332,10 +332,10 @@ $needaapcfg = "<?PHP
   'main_fields' => 
   array (
     'xf_shikimori_id' => 'shikimori_id',
-    'xf_mdl_id' => 'myanimelist_id',
+    'xf_mdl_id' => 'mdl_id',
     'xf_player' => 'kodik_iframe',
     'xf_poster' => 'poster',
-    'poster_empty' => '/templates/Advance/dleimages/no_image.jpg',
+    'poster_empty' => '/templates/Default/dleimages/no_image.jpg',
     'xf_season' => 'kodik_last_season',
     'xf_series' => 'kodik_last_episode',
     'xf_quality' => 'kodik_quality',
