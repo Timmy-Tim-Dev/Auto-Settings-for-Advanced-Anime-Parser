@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dleplugin>
+	<name>Авто-Установка Advanced Kodik Parser</name>
+	<description></description>
+	<icon></icon>
+	<version>1</version>
+	<dleversion></dleversion>
+	<versioncompare>==</versioncompare>
+	<upgradeurl></upgradeurl>
+	<filedelete>0</filedelete>
+	<needplugin>Advanced Kodik Parser</needplugin>
+	<mnotice>1</mnotice>
+	<mysqlinstall><![CDATA[]]></mysqlinstall>
+	<mysqlupgrade><![CDATA[]]></mysqlupgrade>
+	<mysqlenable><![CDATA[]]></mysqlenable>
+	<mysqldisable><![CDATA[]]></mysqldisable>
+	<mysqldelete><![CDATA[]]></mysqldelete>
+	<phpinstall><![CDATA[$mysqlinject = ENGINE_DIR . '/data/mysqlinject.php';
+if (file_exists($mysqlinject)) {
+    $queries = file($mysqlinject, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($queries as $query) {
+        $query = trim($query);
+        if (empty($query)) continue;
+        $query = str_replace('{prefix}', PREFIX, $query);
+        $db->query($query);
+    }
+}
+
+$needaapcfg = "<?PHP 
+
+//AAParser Settings 
+
+\$aaparser_config = array (
+  'settings' => 
+  array (
+    'kodik_api_key' => '9a3a536a8be4b3d3f9f7bd28c1b74071',
+    'kodik_site' => 'bd.kodikres.com',
+    'kodik_api_player' => 'kodikplayer.com',
+    'kodik_api_domain' => 'kodik-api.com',
+    'working_mode' => 0,
+    'shikimori_api_domain' => '//shikimori.io/',
+    'parse_shikimori_genres' => 1,
+    'other_sites' => 1,
+    'parse_authors' => 1,
+    'parse_franshise' => 1,
+    'franchise_sort' => 'date_asd',
+    'parse_similar' => 1,
+    'parse_related' => 1,
+    'parse_wa' => 1,
+    'next_episode_date_new' => 'next_episode_date',
+    'timer_enable' => 1,
+    'grab_on' => 1,
+    'film_sort_by' => 'year&order=desc',
+    'max_actors' => 10,
+    'max_directors' => 5,
+    'max_producers' => 5,
+    'max_writers' => 5,
+    'max_composers' => 5,
+    'max_editors' => 5,
+    'max_designers' => 5,
+    'max_operators' => 5,
+    'update_on' => 1,
+    'cron_key' => 'mrd3ath',
+    'rooms_enable' => 1,
+    'active_time' => 50,
+  ),
+  'main_fields' => 
+  array (
+    'xf_shikimori_id' => 'shikimori_id',
+    'xf_mdl_id' => 'mdl_id',
+    'xf_player' => 'kodik_iframe',
+    'xf_poster' => 'poster',
+    'poster_empty' => '/templates/Default/dleimages/no_image.jpg',
+    'xf_season' => 'kodik_last_season',
+    'xf_series' => 'kodik_last_episode',
+    'xf_quality' => 'kodik_quality',
+    'xf_translation' => 'kodik_translation',
+    'xf_translation_last' => 'kodik_translation_last_log',
+  ),
+  'grabbing' => 
+  array (
+    'author_name' => 'admin',
+    'author_id' => 1,
+    'publish' => 1,
+    'publish_image' => 1,
+    'publish_main' => 1,
+    'allow_rating' => 1,
+    'allow_comments' => 1,
+    'allow_br' => 1,
+    'allow_rss' => 1,
+    'allow_turbo' => 1,
+    'allow_zen' => 1,
+    'poster_source' => 1,
+    'tv' => 1,
+    'movie' => 1,
+    'ova' => 1,
+    'ona' => 1,
+    'special' => 1,
+    'music' => 1,
+    'if_camrip' => 1,
+    'if_lgbt' => 1,
+    'this_year' => 1,
+  ),
+  'update_news' => 
+  array (
+    'cat_check' => 1,
+    'xf_check' => 2,
+    'not_xfields' => 'poster,shikimori_id,myanimelist_id,kinopoisk_id,world_art_id,shikimori_name,shikimori_russian,shikimori_english,shikimori_synonyms,shikimori_kind,shikimori_kind_ru,shikimori_score,shikimori_votes,shikimori_status,shikimori_status_ru,shikimori_episodes,shikimori_episodes_aired,shikimori_aired_on_2,shikimori_released_on_2,shikimori_year,shikimori_season,shikimori_season_url,shikimori_duration,shikimori_genres,shikimori_studios,shikimori_studios_url,shikimori_director,shikimori_director_url,shikimori_producer,shikimori_script,shikimori_script_url,shikimori_franshise,shikimori_similar,shikimori_related,kodik_iframe,trailer,kodik_translation,kodik_translation_types,kodik_translation_types_ru,kodik_countries,kodik_kinopoisk_rating,kodik_kinopoisk_votes,kodik_minimal_age,kodik_rating_mpaa,kodik_last_season,kodik_last_episode,next_episode_plus_one,kodik_episodes_total,kodik_episodes_aired,kodik_translation_last,kodik_translation_last_log,kodik_quality,kodik_status_ru,kodik_status_en,next_episode_date,shikimori_age,lgbt,next_episode_date_format,screenshots',
+  ),
+  'updates' => 
+  array (
+    'max_check' => 50,
+    'new_series' => 1,
+    'xf_series_5' => 'next_episode_plus_one',
+    'new_status' => 1,
+    'xf_status' => 'shikimori_status',
+    'xf_status_ru' => 'shikimori_status_ru',
+    'xf_translation_last_names' => 'kodik_translation_last_log',
+    'xf_rating_sh' => 'shikimori_score',
+    'xf_golos_sh' => 'shikimori_votes',
+    'xf_rating_imdb' => 'imdb_rating',
+    'xf_golos_imdb' => 'imdb_votes',
+    'xf_rating_kp' => 'kodik_kinopoisk_rating',
+    'xf_golos_kp' => 'kodik_kinopoisk_votes',
+    'xf_rating_md' => 'mdl_rating',
+    'xf_golos_md' => 'mdl_votes',
+  ),
+  'fields' => 
+  array (
+    'xf_camrip' => 'camrip',
+    'xf_lgbt' => 'lgbt',
+  ),
+  'xfields' => 
+  array (
+    'title' => '[if_shikimori_russian]{shikimori_russian}[/if_shikimori_russian][ifnot_shikimori_russian]{shikimori_name}[/ifnot_shikimori_russian]',
+    'short_story' => '[if_shikimori_plot]{shikimori_plot}[/if_shikimori_plot]',
+    'full_story' => '[if_shikimori_plot]{shikimori_plot}[/if_shikimori_plot]',
+    'alt_name' => '[if_kodik_title]{kodik_title}[/if_kodik_title][ifnot_kodik_title]{kodik_title_orig}[/ifnot_kodik_title] смотреть онлайн',
+    'meta_title' => '[if_kodik_title]{kodik_title}[/if_kodik_title][ifnot_kodik_title]{kodik_title_orig}[/ifnot_kodik_title] смотреть онлайн',
+    'meta_description' => '{worldart_plot}',
+    'tags' => '[if_kodik_mydramalist_tags]{kodik_mydramalist_tags}[/if_kodik_mydramalist_tags][if_worldart_tags]{worldart_tags}[/if_worldart_tags]',
+    'catalog' => '{catalog_rus}',
+    'poster' => '{image}',
+    'shikimori_id' => '{shikimori_id}',
+    'myanimelist_id' => '{myanimelist_id}',
+    'kinopoisk_id' => '{kodik_kinopoisk_id}',
+    'world_art_id' => '{world_art}',
+    'imdb_id' => '{kodik_imdb_id}',
+    'shikimori_name' => '{shikimori_name}',
+    'shikimori_russian' => '{shikimori_russian}',
+    'shikimori_english' => '{shikimori_english}',
+    'shikimori_synonyms' => '{shikimori_synonyms}',
+    'shikimori_kind' => '{shikimori_kind}',
+    'shikimori_kind_ru' => '{shikimori_kind_ru}',
+    'shikimori_score' => '{shikimori_score}',
+    'shikimori_votes' => '{shikimori_votes}',
+    'shikimori_status' => '{shikimori_status}',
+    'shikimori_status_ru' => '{shikimori_status_ru}',
+    'shikimori_episodes' => '[if_shikimori_episodes]{shikimori_episodes}[/if_shikimori_episodes][ifnot_shikimori_episodes]?[/ifnot_shikimori_episodes]',
+    'shikimori_episodes_aired' => '{shikimori_episodes_aired}',
+    'shikimori_aired_on_2' => '{shikimori_aired_on_2}',
+    'shikimori_released_on_2' => '{shikimori_released_on_2}',
+    'shikimori_year' => '{shikimori_year}',
+    'shikimori_season' => '{shikimori_season}',
+    'shikimori_season_url' => '{shikimori_season}',
+    'shikimori_duration' => '{shikimori_duration}',
+    'shikimori_genres' => '{shikimori_genres}',
+    'shikimori_studios' => '{shikimori_studios}',
+    'shikimori_studios_url' => '{shikimori_studios}',
+    'shikimori_director' => '{shikimori_director}',
+    'shikimori_director_url' => '{shikimori_director}',
+    'shikimori_producer' => '{shikimori_producer}',
+    'shikimori_script' => '{shikimori_script}',
+    'shikimori_script_url' => '{shikimori_script}',
+    'shikimori_franshise' => '{shikimori_franshise}',
+    'shikimori_similar' => '{shikimori_similar}',
+    'shikimori_related' => '{shikimori_related}',
+    'kodik_iframe' => '{kodik_iframe}',
+    'trailer' => '{youtube_trailer}',
+    'kodik_translation' => '{kodik_translation}',
+    'kodik_translation_types' => '{kodik_translation_types}',
+    'kodik_translation_types_ru' => '{kodik_translation_types_ru}',
+    'kodik_countries' => '{kodik_countries}',
+    'kodik_kinopoisk_rating' => '{kodik_kinopoisk_rating}',
+    'kodik_kinopoisk_votes' => '{kodik_kinopoisk_votes}',
+    'kodik_minimal_age' => '{kodik_minimal_age}',
+    'kodik_rating_mpaa' => '{kodik_rating_mpaa}',
+    'kodik_last_season' => '{kodik_last_season}',
+    'kodik_last_episode' => '{kodik_last_episode}',
+    'next_episode_plus_one' => '{kodik_last_episode_5}',
+    'kodik_episodes_total' => '{kodik_episodes_total}',
+    'kodik_episodes_aired' => '{kodik_episodes_aired}',
+    'kodik_translation_last' => '{kodik_translation_last}',
+    'kodik_quality' => '{kodik_quality}',
+    'kodik_status_ru' => '{kodik_status_ru}',
+    'kodik_status_en' => '{kodik_status_en}',
+    'shikimori_age' => '{shikimori_rating}',
+    'screenshots' => '{kadr_1}',
+    'kadr_2' => '{kadr_2}',
+    'kadr_3' => '{kadr_3}',
+    'kadr_4' => '{kadr_4}',
+    'kadr_5' => '{kadr_5}',
+    'imdb_rating' => '{kodik_imdb_rating}',
+    'imdb_votes' => '{kodik_imdb_votes}',
+    'mdl_rating' => '{kodik_mydramalist_rating}',
+    'mdl_votes' => '{kodik_mydramalist_votes}',
+    'mdl_id' => '{mydramalist_id}',
+  ),
+  'categories' => 
+  array (
+    1 => 'аниме',
+    2 => 'ТВ-сериал',
+    3 => 'OVA',
+    4 => 'Фильм',
+    5 => 'Полнометражный фильм',
+    6 => 'Короткометражный фильм',
+    7 => 'Спецвыпуск,TV Спецвыпуск',
+    8 => 'ONA',
+    9 => 'Анонс',
+    10 => 'Онгоинг',
+    11 => 'Завершён',
+    12 => 'Озвучка',
+    13 => 'Субтитры',
+    88 => 'Япония',
+    89 => 'США',
+    90 => 'Китай',
+    14 => '3D-графика',
+    15 => 'ангелы',
+    16 => 'андроиды',
+    17 => 'антигерой',
+    18 => 'антиутопия',
+    19 => 'безумие',
+    20 => 'боевые искусства',
+    21 => 'будущее',
+    22 => 'божества',
+    23 => 'вампиры',
+    24 => 'военное',
+    25 => 'врачи',
+    26 => 'вымышленный мир',
+    27 => 'гарем',
+    28 => 'гурман',
+    29 => 'горничная',
+    30 => 'демоны',
+    31 => 'детектив',
+    32 => 'детское',
+    33 => 'дзёсей',
+    34 => 'драма',
+    35 => 'драконы',
+    36 => 'дружба',
+    37 => 'ёкаи',
+    38 => 'зомби',
+    39 => 'зверолюди',
+    40 => 'игры',
+    41 => 'исторический',
+    42 => 'комедия',
+    43 => 'космос',
+    44 => 'киберпанк',
+    45 => 'кулинария',
+    46 => 'любовный треугольник',
+    47 => 'магия',
+    48 => 'машины',
+    49 => 'меха',
+    50 => 'музыка,музыкальная группа,классическая музыка',
+    52 => 'mmorpg',
+    53 => 'ниндзя',
+    54 => 'наше время',
+    55 => 'несколько сюжетных линий',
+    56 => 'фильм-нуар,нуар',
+    57 => 'оммёдзи',
+    58 => 'паропанк',
+    59 => 'пародия,сатира / пародия',
+    60 => 'повседневность',
+    61 => 'полиция',
+    62 => 'постапокалиптический мир',
+    63 => 'приключения',
+    64 => 'психологическое',
+    65 => 'путешествие в другой мир',
+    66 => 'разница в возрасте',
+    67 => 'работа,работа и карьера',
+    68 => 'романтика',
+    69 => 'рыцари',
+    70 => 'самураи',
+    71 => 'сверхъестественное',
+    72 => 'спорт,велоспорт,спортивная борьба',
+    73 => 'супер сила,супергерой,суперсила',
+    74 => 'сэйнэн',
+    75 => 'сёдзё',
+    76 => 'сёдзё-ай',
+    77 => 'сёнен',
+    78 => 'сёнен-ай',
+    79 => 'триллер',
+    80 => 'тёмное фэнтези',
+    81 => 'ужасы',
+    82 => 'фантастика',
+    83 => 'фэнтези,классическое фэнтези',
+    84 => 'школа',
+    85 => 'экшен',
+    86 => 'этти',
+    87 => 'эльфы',
+    91 => '1920',
+    92 => '1921',
+    93 => '1922',
+    94 => '1923',
+    95 => '1924',
+    96 => '1925',
+    97 => '1926',
+    98 => '1927',
+    99 => '1928',
+    100 => '1929',
+    101 => '1930',
+    102 => '1931',
+    103 => '1932',
+    104 => '1933',
+    105 => '1934',
+    106 => '1935',
+    107 => '1936',
+    108 => '1937',
+    109 => '1938',
+    110 => '1939',
+    111 => '1940',
+    112 => '1941',
+    113 => '1942',
+    114 => '1943',
+    115 => '1944',
+    116 => '1945',
+    117 => '1946',
+    118 => '1947',
+    119 => '1948',
+    120 => '1949',
+    121 => '1950',
+    122 => '1951',
+    123 => '1952',
+    124 => '1953',
+    125 => '1954',
+    126 => '1955',
+    127 => '1956',
+    128 => '1957',
+    129 => '1958',
+    130 => '1959',
+    131 => '1960',
+    132 => '1961',
+    133 => '1962',
+    134 => '1963',
+    135 => '1964',
+    136 => '1965',
+    137 => '1966',
+    138 => '1967',
+    139 => '1968',
+    140 => '1969',
+    141 => '1970',
+    142 => '1971',
+    143 => '1972',
+    144 => '1973',
+    145 => '1974',
+    146 => '1975',
+    147 => '1976',
+    148 => '1977',
+    149 => '1978',
+    150 => '1979',
+    151 => '1980',
+    152 => '1981',
+    153 => '1982',
+    154 => '1983',
+    155 => '1984',
+    156 => '1985',
+    157 => '1986',
+    158 => '1987',
+    159 => '1988',
+    160 => '1989',
+    161 => '1990',
+    162 => '1991',
+    163 => '1992',
+    164 => '1993',
+    165 => '1994',
+    166 => '1995',
+    167 => '1996',
+    168 => '1997',
+    169 => '1998',
+    170 => '1999',
+    171 => '2000',
+    172 => '2001',
+    173 => '2002',
+    174 => '2003',
+    175 => '2004',
+    176 => '2005',
+    177 => '2006',
+    178 => '2007',
+    179 => '2008',
+    180 => '2009',
+    181 => '2010',
+    182 => '2011',
+    183 => '2012',
+    184 => '2013',
+    185 => '2014',
+    186 => '2015',
+    187 => '2016',
+    188 => '2017',
+    189 => '2018',
+    190 => '2019',
+    191 => '2020',
+    192 => '2021',
+    193 => '2022',
+    194 => '2023',
+    195 => '2024',
+    199 => '2025',
+    200 => '2026',
+  ),
+  'images' => 
+  array (
+    'poster' => 1,
+    'poster_edit' => 1,
+    'screens' => 1,
+    'screens_edit' => 1,
+    'screens_count' => 5,
+  ),
+  'settings_anons' => 
+  array (
+    'anons_on' => 1,
+    'anons_film_sort_by' => 'id',
+    'anons_kind' => 'movie,special,ova,ona,tv',
+    'cat_id' => 9,
+    'publish' => 1,
+    'publish_image' => 1,
+    'publish_main' => 1,
+    'allow_rating' => 1,
+    'allow_comments' => 1,
+    'allow_br' => 1,
+    'allow_rss' => 1,
+    'allow_turbo' => 1,
+    'allow_zen' => 1,
+    'description_update' => 1,
+    'descript' => 'Аниме {shikimori_russian}, но в скором времени оно выйдет. [if_shikimori_aired_on_3]Приблизительная дата выхода ({shikimori_aired_on_3}).[/if_shikimori_aired_on_3]',
+  ),
+  'player' => 
+  array (
+    'enable' => 1,
+    'method' => 0,
+    'player_method' => 0,
+    'custom_cache' => 1,
+    'buttons' => 1,
+    'last_episode' => 1,
+    'hide_episodes' => 1,
+    'auto_next' => 1,
+    'max_remembers' => 50,
+    'fa_icons' => 'fa',
+    'worldart_anime' => 'world_art_id',
+    'kinopoisk_id' => 'kinopoisk_id',
+    'imdb_id' => 'imdb_id',
+    'voicerate_mod' => 1,
+  ),
+  'calendar_settings' => 
+  array (
+    'enable_schedule' => 1,
+    'schedule_main' => 1,
+  ),
+  'push_notifications' => 
+  array (
+    'fa_icons' => 'fa',
+    'fa_icons_rooms' => 'fa',
+    'tg_source_poster' => 'xfields',
+  ),
+  'persons' => 
+  array (
+    'personas_on' => 1,
+    'main_characters' => 1,
+    'main_characters_limit' => 0,
+    'characters' => 1,
+    'characters_limit' => 0,
+    'persons' => 1,
+    'persons_limit' => 0,
+    'personas_cache' => 1,
+    'default_image' => '/templates/Default/dleimages/no_image.jpg',
+    'persons_page' => 1,
+    'persons_page_cache' => 1,
+    'metatitle' => '[if_russian]{russian}[/if_russian][ifnot_russian]{name}[/ifnot_russian] ({id})',
+    'metadescr' => '[if_description][ifnot_birth_on]Подробнее о персонаже [if_russian]{russian}[/if_russian][ifnot_russian]{name}[/ifnot_russian]: {description_no_spoiler}[/ifnot_birth_on][/if_description][ifnot_description][if_birth_on]Краткая информация о персоне [if_russian]{russian}[/if_russian][ifnot_russian]{name}[/ifnot_russian]: День рождение {birth_on}, Должность [if_job_title]{job_title}[/if_job_title][/if_birth_on][/ifnot_description][ifnot_description][ifnot_birth_on]Краткая информация о [if_russian]{russian}[/if_russian][ifnot_russian]{name}[/ifnot_russian]: [if_job_title]Должность {job_title}[/if_job_title][/ifnot_birth_on][/ifnot_description]',
+    'metakeyw' => '[if_name]{name},[/if_name][if_russian] {russian},[/if_russian] anime, аниме,[if_altname] {altname},[/if_altname][if_japanese] {japanese},[/if_japanese] {id}, герои, персонажи',
+    'persons_sitemap' => 1,
+  ),
+);
+
+?>";
+$aapcfgpath = ENGINE_DIR . '/mrdeath/aaparser/data/config.php';
+
+file_put_contents($aapcfgpath, $needaapcfg);]]></phpinstall>
+	<phpupgrade><![CDATA[]]></phpupgrade>
+	<phpenable><![CDATA[]]></phpenable>
+	<phpdisable><![CDATA[]]></phpdisable>
+	<phpdelete><![CDATA[]]></phpdelete>
+	<notice><![CDATA[<h2 style="margin:0;padding:0;line-height:1;"><b>После установки необходимо проверить следующее</b></h2>
+[ol=1]
+[*]Страница категории, проверьте что категории начинаются с ID 1, а так же должно начинаться с <b>Аниме</b> и заканчиваться <b>2026</b> 
+[*]Страница дополнительный полей, должно начинаться с <b>poster</b> и заканчиваться <b>mdl_votes</b> 
+[*]Страница модуля Advanced Anime Parser, замените API ключ на свой.
+[/ol]
+<h2 style="margin:0;padding:0;line-height:1;"><b>То что теперь необходимо сделать</b></h2>
+<b style="margin:0;">HTACCESS/NGINX</b>
+[ol=1]
+[*]Страница "Продолжить просмотр" (Вкладка Модули/Вывод плеера)
+[*]Страница "Расписание серий" (Вкладка Модули/Расписание серий)
+[*]Страница "Совместный просмотр"  (Вкладка Модули/Совместный просмотр)
+[*]Страница "Персонажей и персон" (Вкладка Модули/Актёры и персонажи)
+[/ol]
+<b style="margin:0">Файлы которые надо создать</b>
+[ol=1]
+[*]continue_watch.tpl (Вкладка Модули/Вывод плеера)
+[*]schedule.tpl (Вкладка Модули/Расписание серий)
+[*]rooms.tpl (Вкладка Модули/Совместный просмотр)
+[*]rooms_shortstory.tpl (Вкладка Модули/Совместный просмотр)
+[*]main_characters_block.tpl, main_characters_info.tpl (Вкладка Модули/Актёры и персонажи)
+[*]sub_characters_block.tpl, sub_characters_info.tpl (Вкладка Модули/Актёры и персонажи)
+[*]persons_block.tpl, persons_info.tpl (Вкладка Модули/Актёры и персонажи)
+[*]/characters/characters.tpl, /characters/people.tpl (Вкладка Модули/Актёры и персонажи)
+[/ol]
+<b style="margin:0">Статья целиком (Fullstory)</b>
+[ol=1]
+[*]Вывести таймер с отсчётом до выхода новой серии (Вкладка основные настройки)
+[*]Вывести плеер (Вкладка Модули/Вывод плеера)
+[*]Вывести рейтинг озвучек (Вкладка Модули/Вывод плеера)
+[*]Вывести кнопку совместного просмотра (Вкладка Модули/Совместный просмотр)
+[*]Вывести персонажей и персон (Вкладка Модули/Актёры и персонажи)
+[/ol]
+<b style="margin:0">Главная страница (main.tpl)</b>
+[ol=1]
+[*]Вывести расписание серий (Вкладка Модули/Расписание серий)
+[/ol]
+<h2 style="color:red;font-weight:bold">!ТЕПЕРЬ НЕОБХОДИМО УДАЛИТЬ ПЛАГИН, ЧТОБЫ СЛУЧАЙНО ПОТОМ ЕГО СНОВА НЕ ЗАПУСТИТЬ!</h2>
+<i>Удалять не модуль Advanced Anime Parser, а именно Авто-Установку!</i>]]></notice>
+</dleplugin>

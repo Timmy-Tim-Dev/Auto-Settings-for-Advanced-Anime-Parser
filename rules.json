@@ -1,0 +1,256 @@
+{
+    "custom.characters": [
+        "/characters/{char_id}[/]",
+        "/index.php?do=characters&type=characters&id={char_id}",
+        "/characters/{char_id}[/]"
+    ],"custom.people": [
+        "/people/{char_id}[/]",
+        "/index.php?do=characters&type=people&id={char_id}",
+        "/people/{char_id}[/]"
+    ],
+    "custom.schedule": [
+        "/schedule/",
+        "/index.php?do=schedule",
+        "/schedule/"
+    ],
+    "showfull.page.newscomments": [
+        "/{category}/page,{news_page},{cstart},{newsid}-{news_name}.html",
+        "/index.php?newsid={newsid}&news_page={news_page}&cstart={cstart}",
+        "/{category:[^.]+}/page,{news_page:\\d+},{cstart:\\d+},{newsid:\\d+}-{news_name:.*}.html"
+    ],
+    "showfull.page.news": [
+        "/{category}/page,{news_page},{newsid}-{news_name}.html",
+        "/index.php?newsid={newsid}&news_page={news_page}",
+        "/{category:[^.]+}/page,{news_page:\\d+},{newsid:\\d+}-{news_name:.*}.html"
+    ],
+    "showfull.print": [
+        "/{category}/print:page,{news_page},{newsid}-{news_name}.html",
+        "/index.php?mod=print&news_page={news_page}&newsid={newsid}",
+        "/{category:[^.]+}/print:page,{news_page:\\d+},{newsid:\\d+}-{news_name:.*}.html"
+    ],
+    "showfull": [
+        "/{category}/{newsid}-{news_name}.html",
+        "/index.php?newsid={newsid}",
+        "/{category:[^.]+}/{newsid:\\d+}-{news_name:.*}.html"
+    ],
+    "showfull.page.newscomments.1": [
+        "/page,{news_page},{cstart},{newsid}-{news_name}.html",
+        "/index.php?newsid={newsid}&news_page={news_page}&cstart={cstart}",
+        "/page,{news_page:\\d+},{cstart:\\d+},{newsid:\\d+}-{news_name:.*}.html"
+    ],
+    "showfull.page.news.1": [
+        "/page,{news_page},{newsid}-{news_name}.html",
+        "/index.php?newsid={newsid}&news_page={news_page}",
+        "/page,{news_page:\\d+},{newsid:\\d+}-{news_name:.*}.html"
+    ],
+    "showfull.print.1": [
+        "/print:page,{news_page},{newsid}-{news_name}.html",
+        "/index.php?mod=print&news_page={news_page}&newsid={newsid}",
+        "/print:page,{news_page:\\d+},{newsid:\\d+}-{news_name:.*}.html"
+    ],
+    "showfull.1": [
+        "/{newsid}-{news_name}.html",
+        "/index.php?newsid={newsid}",
+        "/{newsid:\\d+}-{news_name:.*}.html"
+    ],
+    "main.page": [
+        "/page/{cstart}/",
+        "/index.php?cstart={cstart}",
+        "/page/{cstart:\\d+}[/]"
+    ],
+    "date.day": [
+        "/{year}/{month}/{day}/",
+        "/index.php?year={year}&month={month}&day={day}",
+        "/{year:\\d{4}}/{month:\\d{2}}/{day:\\d{2}}[/]"
+    ],
+    "date.day.page": [
+        "/{year}/{month}/{day}/page/{cstart}/",
+        "/index.php?year={year}&month={month}&day={day}&cstart={cstart}",
+        "/{year:\\d{4}}/{month:\\d{2}}/{day:\\d{2}}/page/{cstart:\\d+}[/]"
+    ],
+    "date.month": [
+        "/{year}/{month}/",
+        "/index.php?year={year}&month={month}",
+        "/{year:\\d{4}}/{month:\\d{2}}[/]"
+    ],
+    "date.month.page": [
+        "/{year}/{month}/page/{cstart}/",
+        "/index.php?year={year}&month={month}&cstart={cstart}",
+        "/{year:\\d{4}}/{month:\\d{2}}/page/{cstart:\\d+}[/]"
+    ],
+    "date.year": [
+        "/{year}/",
+        "/index.php?year={year}",
+        "/{year:\\d{4}}[/]"
+    ],
+    "date.year.page": [
+        "/{year}/page/{cstart}/",
+        "/index.php?year={year}&cstart={cstart}",
+        "/{year:\\d{4}}/page/{cstart:\\d+}[/]"
+    ],
+    "tags.page": [
+        "/tags/{tag}/page/{cstart}/",
+        "/index.php?do=tags&tag={tag}&cstart={cstart}",
+        "/tags/{tag}/page/{cstart:\\d+}[/]"
+    ],
+    "tags": [
+        "/tags/{tag}/",
+        "/index.php?do=tags&tag={tag}",
+        "/tags/{tag}[/]"
+    ],
+    "tags.all": [
+        "/tags/",
+        "/index.php?do=tags",
+        "/tags[/]"
+    ],
+    "xfsearch.page": [
+        "/xfsearch/{xf}/page/{cstart}/",
+        "/index.php?do=xfsearch&xf={xf}&cstart={cstart}",
+        "/xfsearch/{xf:.+}/page/{cstart:\\d+}[/]"
+    ],
+    "xfsearch": [
+        "/xfsearch/{xf}/",
+        "/index.php?do=xfsearch&xf={xf}",
+        "/xfsearch/{xf:.+}[/]"
+    ],
+    "user.rss": [
+        "/user/{user}/rss.xml",
+        "/index.php?mod=rss&subaction=allnews&user={user}",
+        "/user/{user}/rss.xml"
+    ],
+    "user.rssdzen": [
+        "/user/{user}/rssdzen.xml",
+        "/index.php?mod=rss&subaction=allnews&rssmode=dzen&user={user}",
+        "/user/{user}/rssdzen.xml"
+    ],
+    "user": [
+        "/user/{user}/",
+        "/index.php?subaction=userinfo&user={user}",
+        "/user/{user}[/]"
+    ],
+    "user.page": [
+        "/user/{user}/page/{cstart}/",
+        "/index.php?subaction=userinfo&user={user}&cstart={cstart}",
+        "/user/{user}/page/{cstart:\\d+}[/]"
+    ],
+    "user.news": [
+        "/user/{user}/news/",
+        "/index.php?subaction=allnews&user={user}",
+        "/user/{user}/news[/]"
+    ],
+    "user.news.page": [
+        "/user/{user}/news/page/{cstart}/",
+        "/index.php?subaction=allnews&user={user}&cstart={cstart}",
+        "/user/{user}/news/page/{cstart:\\d+}[/]"
+    ],
+    "lastnews": [
+        "/lastnews/",
+        "/index.php?do=lastnews",
+        "/lastnews[/]"
+    ],
+    "lastnews.page": [
+        "/lastnews/page/{cstart}/",
+        "/index.php?do=lastnews&cstart={cstart}",
+        "/lastnews/page/{cstart:\\d+}[/]"
+    ],
+    "catalog.rss": [
+        "/catalog/{catalog}/rss.xml",
+        "/index.php?mod=rss&catalog={catalog}",
+        "/catalog/{catalog}/rss.xml"
+    ],
+    "catalog.rssdzen": [
+        "/catalog/{catalog}/rssdzen.xml",
+        "/index.php?mod=rss&rssmode=dzen&catalog={catalog}",
+        "/catalog/{catalog}/rssdzen.xml"
+    ],
+    "catalog": [
+        "/catalog/{catalog}/",
+        "/index.php?catalog={catalog}",
+        "/catalog/{catalog}[/]"
+    ],
+    "catalog.page": [
+        "/catalog/{catalog}/page/{cstart}/",
+        "/index.php?catalog={catalog}&cstart={cstart}",
+        "/catalog/{catalog}/page/{cstart:\\d+}[/]"
+    ],
+    "newposts": [
+        "/newposts/",
+        "/index.php?subaction=newposts",
+        "/newposts[/]"
+    ],
+    "newposts.page": [
+        "/newposts/page/{cstart}/",
+        "/index.php?subaction=newposts&cstart={cstart}",
+        "/newposts/page/{cstart:\\d+}[/]"
+    ],
+    "favorites": [
+        "/favorites/",
+        "/index.php?do=favorites",
+        "/favorites[/]"
+    ],
+    "favorites.page": [
+        "/favorites/page/{cstart}/",
+        "/index.php?do=favorites&cstart={cstart}",
+        "/favorites/page/{cstart:\\d+}[/]"
+    ],
+    "rules": [
+        "/rules.html",
+        "/index.php?do=rules",
+        "/rules.html"
+    ],
+    "statistics": [
+        "/statistics.html",
+        "/index.php?do=stats",
+        "/statistics.html"
+    ],
+    "addnews": [
+        "/addnews.html",
+        "/index.php?do=addnews",
+        "/addnews.html"
+    ],
+    "rss": [
+        "/rss.xml",
+        "/index.php?mod=rss",
+        "/rss.xml"
+    ],
+    "rssdzen": [
+        "/rssdzen.xml",
+        "/index.php?mod=rss&rssmode=dzen",
+        "/rssdzen.xml"
+    ],
+    "rss.category": [
+        "/{category}/rss.xml",
+        "/index.php?mod=rss&do=cat&category={category}",
+        "/{category:[^.]+}/rss.xml"
+    ],
+    "rssdzen.category": [
+        "/{category}/rssdzen.xml",
+        "/index.php?mod=rss&do=cat&rssmode=dzen&category={category}",
+        "/{category:[^.]+}/rssdzen.xml"
+    ],
+    "category.page": [
+        "/{category}/page/{cstart}/",
+        "/index.php?do=cat&category={category}&cstart={cstart}",
+        "/{category:[^.]+}/page/{cstart:\\d+}[/]"
+    ],
+    "category": [
+        "/{category}/",
+        "/index.php?do=cat&category={category}",
+        "/{category:[^.]+}[/]"
+    ],
+    "static.page": [
+        "/page,{news_page},{page}.html",
+        "/index.php?do=static&page={page}&news_page={news_page}",
+        "/page,{news_page:\\d+},{page}.html"
+    ],
+    "static.print": [
+        "/print:{page}.html",
+        "/index.php?mod=print&do=static&page={page}",
+        "/print:{page}.html"
+    ],
+    "static": [
+        "/{page}.html",
+        "/index.php?do=static&page={page}",
+        "/{page}.html"
+    ]
+}
